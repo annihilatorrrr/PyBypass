@@ -10,15 +10,15 @@ https://racaty.io/10w86dphf8y2
 """
 
 def racaty_bypass(url: str)-> str:
-        
-        
-        
+
+
+
         client = requests.Session ()
         url= client.get(url).url
-        
+
         url = url[:-1] if url[-1] == '/' else url
         token = url.split("/")[-1]
-              
+
         headers = {
 
             'content-type': 'application/x-www-form-urlencoded',
@@ -37,8 +37,8 @@ def racaty_bypass(url: str)-> str:
 
         response = client.post(url, headers=headers, data=data)
         soup = BeautifulSoup(response.text, "html.parser")  
-     
-       
+
+
 
         if (btn := soup.find(class_="btn btn-dow")): return btn["href"]
         if (unique := soup.find(id="uniqueExpirylink")): return unique["href"]                                                         
